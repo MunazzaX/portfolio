@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shaikh Munazza — UI/UX & Graphic Designer</title>
+  <meta name="description" content="Shaikh Munazza — Creative UI/UX & Graphic Designer from Ahmedabad. Explore portfolio, skills, and experience." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Urbanist:ital,wght@0,300;0,400;0,600;0,800;1,400&display=swap" rel="stylesheet" />
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════ PRELOADER ══════════ -->
+  <div id="preloader">
+    <div class="pre-inner">
+      <div class="pre-logo">SM</div>
+      <div class="pre-bar"><span></span></div>
+      <p>Loading Portfolio…</p>
+    </div>
+  </div>
+
+  <!-- ══════════ CUSTOM CURSOR ══════════ -->
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
+
+  <!-- ══════════ SCROLL PROGRESS ══════════ -->
+  <div id="scroll-progress"></div>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">SM<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#resume" class="nav-link">Resume</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section id="hero">
+    <!-- Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <!-- Particles -->
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="hero-container">
+      <div class="hero-text" data-aos="fade-right" data-aos-duration="900">
+        <span class="hero-tag">✦ Available for Work</span>
+        <h1 class="hero-name">Shaikh<br /><em>Munazza</em></h1>
+        <p class="hero-role">
+          <span id="typed-text"></span><span class="cursor-blink">|</span>
+        </p>
+        <p class="hero-bio">
+          Creative designer passionate about crafting visually stunning experiences that speak before words do.
+        </p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn btn-primary magnetic">Hire Me</a>
+          <a href="#resume" class="btn btn-outline magnetic">View Resume</a>
+        </div>
+        <div class="hero-socials">
+          <a href="mailto:munazzashaikh531@gmail.com" class="social-icon" aria-label="Email"><i class="ri-mail-line"></i></a>
+          <a href="tel:+917069878373" class="social-icon" aria-label="Phone"><i class="ri-phone-line"></i></a>
+          <a href="https://www.reallygreatsite.com" target="_blank" class="social-icon" aria-label="Website"><i class="ri-global-line"></i></a>
+          <a href="#" class="social-icon" aria-label="LinkedIn"><i class="ri-linkedin-box-line"></i></a>
+          <a href="#" class="social-icon" aria-label="Dribbble"><i class="ri-dribbble-line"></i></a>
+        </div>
+      </div>
+
+      <div class="hero-image-wrap" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
+        <div class="hero-avatar-ring">
+          <div class="ring ring-1"></div>
+          <div class="ring ring-2"></div>
+          <div class="avatar-circle">
+            <div class="avatar-placeholder">
+              <i class="ri-user-3-line"></i>
+            </div>
+          </div>
+        </div>
+        <!-- Floating badges -->
+        <div class="float-badge badge-1"><i class="ri-palette-line"></i> UI/UX</div>
+        <div class="float-badge badge-2"><i class="ri-brush-line"></i> Graphic</div>
+        <div class="float-badge badge-3">✦ Creative</div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span>Scroll Down</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══════════ ABOUT ══════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Who I Am</span>
+        <h2>About <em>Me</em></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-image-col" data-aos="fade-right" data-aos-duration="800">
+          <div class="about-img-frame">
+            <div class="about-img-inner">
+              <div class="about-img-placeholder"><i class="ri-user-3-line"></i></div>
+            </div>
+            <div class="about-img-deco"></div>
+          </div>
+        </div>
+        <div class="about-text-col" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+          <h3>Creative Designer &amp; Visual Storyteller</h3>
+          <p>
+            Creative Graphic Designer skilled in creating visually appealing designs that effectively communicate ideas, with a strong focus on creativity and modern design trends.
+          </p>
+          <p>
+            I specialize in UI/UX Design, Graphic Design, Branding, and Web Design — transforming complex ideas into elegant, user-centric experiences that leave a lasting impression.
+          </p>
+          <div class="about-info-grid">
+            <div class="info-item"><span>Name</span><strong>Shaikh Munazza</strong></div>
+            <div class="info-item"><span>Location</span><strong>Ahmedabad, India</strong></div>
+            <div class="info-item"><span>Email</span><strong>munazzashaikh531@gmail.com</strong></div>
+            <div class="info-item"><span>Available</span><strong>Freelance & Full-time</strong></div>
+          </div>
+          <a href="#contact" class="btn btn-primary magnetic" style="margin-top:2rem;">Let's Connect</a>
+        </div>
+      </div>
+      <!-- Stats -->
+      <div class="stats-grid" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-card">
+          <span class="stat-num" data-count="1">0</span><span class="stat-plus">+</span>
+          <p>Years Experience</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" data-count="20">0</span><span class="stat-plus">+</span>
+          <p>Projects Done</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" data-count="5">0</span><span class="stat-plus">+</span>
+          <p>Core Skills</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" data-count="10">0</span><span class="stat-plus">+</span>
+          <p>Happy Clients</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SKILLS ══════════ -->
+  <section id="skills">
+    <div class="blob blob-skills"></div>
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">My Expertise</span>
+        <h2>Skills &amp; <em>Abilities</em></h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-item" data-aos="fade-up" data-aos-delay="0">
+          <div class="skill-header"><span>Graphic Design</span><span class="skill-pct" data-pct="100">0%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="100"></div></div>
+        </div>
+        <div class="skill-item" data-aos="fade-up" data-aos-delay="80">
+          <div class="skill-header"><span>Web Design</span><span class="skill-pct" data-pct="90">0%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-item" data-aos="fade-up" data-aos-delay="160">
+          <div class="skill-header"><span>Search Engine Optimization</span><span class="skill-pct" data-pct="95">0%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+        </div>
+        <div class="skill-item" data-aos="fade-up" data-aos-delay="240">
+          <div class="skill-header"><span>Meta Tag Optimization</span><span class="skill-pct" data-pct="95">0%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+        </div>
+        <div class="skill-item" data-aos="fade-up" data-aos-delay="320">
+          <div class="skill-header"><span>Communication</span><span class="skill-pct" data-pct="90">0%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+        </div>
+      </div>
+
+      <!-- Tool Pills -->
+      <div class="tools-row" data-aos="fade-up" data-aos-delay="100">
+        <div class="tool-pill"><i class="ri-adobe-line"></i> Photoshop</div>
+        <div class="tool-pill"><i class="ri-quill-pen-line"></i> Illustrator</div>
+        <div class="tool-pill"><i class="ri-layout-line"></i> Figma</div>
+        <div class="tool-pill"><i class="ri-computer-line"></i> Canva</div>
+        <div class="tool-pill"><i class="ri-code-s-slash-line"></i> HTML/CSS</div>
+        <div class="tool-pill"><i class="ri-film-line"></i> After Effects</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ EXPERIENCE ══════════ -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Career Path</span>
+        <h2>My <em>Experience</em></h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item" data-aos="fade-right" data-aos-duration="700">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="tl-date"><i class="ri-calendar-line"></i> 2025 — Present</span>
+            <h3>Graphic Designer</h3>
+            <h4>Streebo Solution PVT. LMT.</h4>
+            <p>Created social media and branding designs, meeting client needs on time. Developed visual identities and marketing collateral with precision and creativity.</p>
+            <div class="tl-tags"><span>Branding</span><span>Social Media</span><span>Graphic Design</span></div>
+          </div>
+        </div>
+        <div class="timeline-item right" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="tl-date"><i class="ri-calendar-line"></i> 2025 — 2026</span>
+            <h3>Website Designer</h3>
+            <h4>Streebo Solution PVT. LMT.</h4>
+            <p>Designed clean and responsive websites, focusing on user-friendly layouts and modern UI. Collaborated with development teams to deliver pixel-perfect interfaces.</p>
+            <div class="tl-tags"><span>UI/UX</span><span>Web Design</span><span>Responsive</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ EDUCATION ══════════ -->
+  <section id="education">
+    <div class="blob blob-edu"></div>
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Academic</span>
+        <h2>My <em>Education</em></h2>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="edu-icon"><i class="ri-graduation-cap-line"></i></div>
+          <span class="edu-year">2024 — 2025</span>
+          <h3>12th Completed</h3>
+          <h4>Nelson's High School</h4>
+          <p>Completed higher secondary education with focus on core academic subjects and extracurricular creative activities.</p>
+        </div>
+        <div class="edu-card" data-aos="fade-up" data-aos-delay="120">
+          <div class="edu-icon"><i class="ri-book-open-line"></i></div>
+          <span class="edu-year">2022 — 2023</span>
+          <h3>10th Completed</h3>
+          <h4>Nelson's High School</h4>
+          <p>Completed secondary education, establishing a strong academic foundation with creative and analytical skills.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PROJECTS ══════════ -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">My Work</span>
+        <h2>Featured <em>Projects</em></h2>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="project-img" style="background: linear-gradient(135deg, #e7c4b6, #c9987f);">
+            <div class="project-overlay">
+              <a href="#" class="proj-link"><i class="ri-external-link-line"></i></a>
+            </div>
+            <div class="project-deco"><i class="ri-layout-masonry-line"></i></div>
+          </div>
+          <div class="project-info">
+            <span class="proj-cat">UI Design</span>
+            <h3>Mobile App UI Design</h3>
+            <p>End-to-end UI design for a lifestyle mobile application with a focus on smooth user flow and modern aesthetics.</p>
+            <div class="proj-tags"><span>Figma</span><span>Mobile</span><span>UI/UX</span></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-img" style="background: linear-gradient(135deg, #c9987f, #a07060);">
+            <div class="project-overlay">
+              <a href="#" class="proj-link"><i class="ri-external-link-line"></i></a>
+            </div>
+            <div class="project-deco"><i class="ri-brush-4-line"></i></div>
+          </div>
+          <div class="project-info">
+            <span class="proj-cat">Branding</span>
+            <h3>Brand Identity Design</h3>
+            <p>Complete brand identity including logo, color palette, typography, and marketing collateral for a premium brand.</p>
+            <div class="proj-tags"><span>Illustrator</span><span>Branding</span><span>Logo</span></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-img" style="background: linear-gradient(135deg, #f1ddd4, #e7c4b6);">
+            <div class="project-overlay">
+              <a href="#" class="proj-link"><i class="ri-external-link-line"></i></a>
+            </div>
+            <div class="project-deco"><i class="ri-global-line"></i></div>
+          </div>
+          <div class="project-info">
+            <span class="proj-cat">Web Design</span>
+            <h3>Responsive Website</h3>
+            <p>Modern, fully responsive website design with clean UI patterns and seamless user experience across all devices.</p>
+            <div class="proj-tags"><span>HTML/CSS</span><span>Responsive</span><span>Web</span></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-img" style="background: linear-gradient(135deg, #b7856f, #c9987f);">
+            <div class="project-overlay">
+              <a href="#" class="proj-link"><i class="ri-external-link-line"></i></a>
+            </div>
+            <div class="project-deco"><i class="ri-instagram-line"></i></div>
+          </div>
+          <div class="project-info">
+            <span class="proj-cat">Social Media</span>
+            <h3>Social Media Kit</h3>
+            <p>Comprehensive social media design kit with post templates, story designs, and highlight covers for Instagram &amp; Facebook.</p>
+            <div class="proj-tags"><span>Canva</span><span>Photoshop</span><span>Social</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ RESUME ══════════ -->
+  <section id="resume">
+    <div class="blob blob-resume"></div>
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">My CV</span>
+        <h2>My <em>Resume</em></h2>
+      </div>
+      <div class="resume-card" data-aos="zoom-in" data-aos-duration="700">
+        <div class="resume-preview">
+          <div class="resume-mockup">
+            <div class="rm-header">
+              <div class="rm-avatar"></div>
+              <div class="rm-title">
+                <div class="rm-line wide"></div>
+                <div class="rm-line medium"></div>
+              </div>
+            </div>
+            <div class="rm-body">
+              <div class="rm-col">
+                <div class="rm-line short"></div>
+                <div class="rm-line medium"></div>
+                <div class="rm-line short"></div>
+                <div class="rm-line wide"></div>
+                <div class="rm-line medium"></div>
+              </div>
+              <div class="rm-col">
+                <div class="rm-line wide"></div>
+                <div class="rm-line short"></div>
+                <div class="rm-line medium"></div>
+                <div class="rm-line wide"></div>
+              </div>
+            </div>
+          </div>
+          <div class="resume-glow"></div>
+        </div>
+        <div class="resume-info">
+          <h3>Shaikh Munazza</h3>
+          <p>UI/UX &amp; Graphic Designer</p>
+          <ul class="resume-highlights">
+            <li><i class="ri-check-line"></i> UI/UX &amp; Graphic Design</li>
+            <li><i class="ri-check-line"></i> Branding &amp; Social Media</li>
+            <li><i class="ri-check-line"></i> Web Design &amp; SEO</li>
+            <li><i class="ri-check-line"></i> Figma, Photoshop, Illustrator</li>
+          </ul>
+          <div class="resume-btns">
+            <button class="btn btn-primary magnetic" id="viewResumeBtn">
+              <i class="ri-eye-line"></i> View Resume
+            </button>
+            <a href="/mnt/user-data/uploads/Modern_Resume_2.jpg" download class="btn btn-outline magnetic">
+              <i class="ri-download-2-line"></i> Download
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CONTACT ══════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Get In Touch</span>
+        <h2>Let's <em>Connect</em></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info-col" data-aos="fade-right" data-aos-duration="700">
+          <p class="contact-intro">Ready to create something beautiful together? Let's talk about your project or opportunity.</p>
+          <div class="contact-cards">
+            <div class="contact-card">
+              <div class="cc-icon"><i class="ri-phone-line"></i></div>
+              <div class="cc-text"><span>Phone</span><strong>+91 70698 78373</strong></div>
+            </div>
+            <div class="contact-card">
+              <div class="cc-icon"><i class="ri-mail-line"></i></div>
+              <div class="cc-text"><span>Email</span><strong>munazzashaikh531@gmail.com</strong></div>
+            </div>
+            <div class="contact-card">
+              <div class="cc-icon"><i class="ri-global-line"></i></div>
+              <div class="cc-text"><span>Website</span><strong>www.reallygreatsite.com</strong></div>
+            </div>
+            <div class="contact-card">
+              <div class="cc-icon"><i class="ri-map-pin-line"></i></div>
+              <div class="cc-text"><span>Address</span><strong>1689, Nagorivad, Shahpur, Ahmedabad</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-col" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
+          <div class="contact-form-card">
+            <div class="form-group">
+              <input type="text" id="fname" placeholder=" " />
+              <label for="fname">Your Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="femail" placeholder=" " />
+              <label for="femail">Email Address</label>
+            </div>
+            <div class="form-group">
+              <input type="text" id="fsubject" placeholder=" " />
+              <label for="fsubject">Subject</label>
+            </div>
+            <div class="form-group">
+              <textarea id="fmessage" rows="4" placeholder=" "></textarea>
+              <label for="fmessage">Your Message</label>
+            </div>
+            <button class="btn btn-primary btn-full magnetic" id="sendBtn">
+              <i class="ri-send-plane-line"></i> Send Message
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">SM<span>.</span></div>
+      <p>Crafting beautiful digital experiences with love &amp; creativity.</p>
+      <div class="footer-socials">
+        <a href="mailto:munazzashaikh531@gmail.com" aria-label="Email"><i class="ri-mail-line"></i></a>
+        <a href="tel:+917069878373" aria-label="Phone"><i class="ri-phone-line"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-box-line"></i></a>
+        <a href="#" aria-label="Dribbble"><i class="ri-dribbble-line"></i></a>
+      </div>
+      <p class="footer-copy">© 2025 Shaikh Munazza. All Rights Reserved.</p>
+    </div>
+    <button id="back-to-top" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+  </footer>
+
+  <!-- ══════════ RESUME MODAL ══════════ -->
+  <div id="resumeModal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose"><i class="ri-close-line"></i></button>
+      <div class="modal-img-wrap">
+        <img src="Modern Resume 2.jpg" alt="Shaikh Munazza Resume" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TOAST ══════════ -->
+  <div id="toast" class="toast">
+    <i class="ri-checkbox-circle-line"></i>
+    <span>Message sent successfully!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
