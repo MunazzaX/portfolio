@@ -1,6 +1,5 @@
 /* ══════════════════════════════════════
    SHAIKH MUNAZZA — PORTFOLIO SCRIPT
-   All animations, interactions & effects
 ══════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', () => {
     setTimeout(() => {
       preloader.classList.add('hidden');
-    }, 1800);
+    }, 2200);
   });
 
   /* ─────────────────────────────────────
@@ -26,28 +25,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ─────────────────────────────────────
-     3. CUSTOM CURSOR
+     3. CUSTOM CURSOR — Diamond style
   ───────────────────────────────────── */
-  const cursor = document.getElementById('cursor');
-  const follower = document.getElementById('cursor-follower');
-  let mouseX = 0, mouseY = 0;
-  let followerX = 0, followerY = 0;
+  const curDot   = document.getElementById('cur-dot');
+  const curRing  = document.getElementById('cur-ring');
+  const curTrail = document.getElementById('cur-trail');
 
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top  = mouseY + 'px';
-  });
+  if (curDot && curRing && curTrail) {
+    let mx = 0, my = 0;
+    let rx = 0, ry = 0;
+    let tx = 0, ty = 0;
 
-  function animateFollower() {
-    followerX += (mouseX - followerX) * 0.12;
-    followerY += (mouseY - followerY) * 0.12;
-    follower.style.left = followerX + 'px';
-    follower.style.top  = followerY + 'px';
-    requestAnimationFrame(animateFollower);
+    document.addEventListener('mousemove', (e) => {
+      mx = e.clientX; my = e.clientY;
+      curDot.style.left = mx + 'px';
+      curDot.style.top  = my + 'px';
+    });
+
+    function animateCursor() {
+      // ring follows with lag
+      rx += (mx - rx) * 0.14;
+      ry += (my - ry) * 0.14;
+      curRing.style.left = rx + 'px';
+      curRing.style.top  = ry + 'px';
+      // trail follows with more lag
+      tx += (mx - tx) * 0.06;
+      ty += (my - ty) * 0.06;
+      curTrail.style.left = tx + 'px';
+      curTrail.style.top  = ty + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Hover state
+    document.querySelectorAll('a, button, .project-card, .stat-card, .edu-card').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cur-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cur-hover'));
+    });
   }
-  animateFollower();
 
   /* ─────────────────────────────────────
      4. SCROLL PROGRESS
@@ -62,42 +77,32 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ─────────────────────────────────────
      5. NAVBAR: scrolled state + active
   ───────────────────────────────────── */
-  const navbar = document.getElementById('navbar');
+  const navbar   = document.getElementById('navbar');
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id]');
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
 
-    // Active nav highlight
     let current = '';
     sections.forEach(sec => {
-      const top = sec.offsetTop - 120;
-      if (window.scrollY >= top) current = sec.getAttribute('id');
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.getAttribute('id');
     });
     navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
-      }
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
     });
   });
 
   /* ─────────────────────────────────────
      6. HAMBURGER MENU
   ───────────────────────────────────── */
-  const hamburger = document.getElementById('hamburger');
+  const hamburger  = document.getElementById('hamburger');
   const navLinksEl = document.getElementById('navLinks');
 
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
     navLinksEl.classList.toggle('open');
   });
-
   navLinksEl.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('open');
@@ -113,31 +118,21 @@ document.addEventListener('DOMContentLoaded', () => {
     'Graphic Designer',
     'Visual Storyteller',
     'Brand Designer',
-    'Web Designer',
+    'Creative Thinker',
   ];
   const typedEl = document.getElementById('typed-text');
   let roleIndex = 0, charIndex = 0, isDeleting = false;
 
   function type() {
     const current = roles[roleIndex];
-    if (isDeleting) {
-      typedEl.textContent = current.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      typedEl.textContent = current.substring(0, charIndex + 1);
-      charIndex++;
-    }
+    typedEl.textContent = isDeleting
+      ? current.substring(0, charIndex - 1)
+      : current.substring(0, charIndex + 1);
+    isDeleting ? charIndex-- : charIndex++;
 
     let delay = isDeleting ? 60 : 100;
-
-    if (!isDeleting && charIndex === current.length) {
-      delay = 1800;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      roleIndex = (roleIndex + 1) % roles.length;
-      delay = 400;
-    }
+    if (!isDeleting && charIndex === current.length) { delay = 1800; isDeleting = true; }
+    else if (isDeleting && charIndex === 0) { isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; delay = 400; }
     setTimeout(type, delay);
   }
   setTimeout(type, 1000);
@@ -146,8 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
      8. PARTICLES CANVAS
   ───────────────────────────────────── */
   const canvas = document.getElementById('particles-canvas');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
+  const ctx    = canvas.getContext('2d');
 
   function resizeCanvas() {
     canvas.width  = canvas.offsetWidth;
@@ -161,10 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
     reset() {
       this.x     = Math.random() * canvas.width;
       this.y     = Math.random() * canvas.height;
-      this.r     = Math.random() * 3 + 1;
-      this.alpha = Math.random() * 0.4 + 0.05;
-      this.vx    = (Math.random() - 0.5) * 0.4;
-      this.vy    = (Math.random() - 0.5) * 0.4;
+      this.r     = Math.random() * 2.5 + 0.5;
+      this.alpha = Math.random() * 0.35 + 0.05;
+      this.vx    = (Math.random() - 0.5) * 0.35;
+      this.vy    = (Math.random() - 0.5) * 0.35;
       this.color = Math.random() > 0.5 ? '#e7c4b6' : '#c9987f';
     }
     draw() {
@@ -178,26 +172,24 @@ document.addEventListener('DOMContentLoaded', () => {
     update() {
       this.x += this.vx;
       this.y += this.vy;
-      if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-        this.reset();
-      }
+      if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
     }
   }
 
-  for (let i = 0; i < 70; i++) particles.push(new Particle());
+  const particles = Array.from({ length: 60 }, () => new Particle());
 
   function drawLines() {
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
+        const dx   = particles[i].x - particles[j].x;
+        const dy   = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
+        if (dist < 90) {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = 'rgba(201,152,127,' + (0.08 * (1 - dist / 100)) + ')';
-          ctx.lineWidth = 1;
+          ctx.strokeStyle = `rgba(201,152,127,${0.07 * (1 - dist / 90)})`;
+          ctx.lineWidth = 0.8;
           ctx.stroke();
         }
       }
@@ -215,27 +207,22 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ─────────────────────────────────────
      9. SKILL BARS + COUNTER
   ───────────────────────────────────── */
-  const skillFills = document.querySelectorAll('.skill-fill');
-  const skillPcts  = document.querySelectorAll('.skill-pct');
   let skillsAnimated = false;
+  const skillFills   = document.querySelectorAll('.skill-fill');
+  const skillPcts    = document.querySelectorAll('.skill-pct');
 
   function animateSkills() {
     if (skillsAnimated) return;
-    const section = document.getElementById('skills');
-    if (!section) return;
-    const rect = section.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.85) {
+    const sec = document.getElementById('skills');
+    if (sec && sec.getBoundingClientRect().top < window.innerHeight * 0.85) {
       skillsAnimated = true;
       skillFills.forEach((fill, i) => {
-        const w = fill.dataset.width;
-        fill.style.width = w + '%';
-        // counter
+        fill.style.width = fill.dataset.width + '%';
         const pct = skillPcts[i];
         let count = 0;
         const target = parseInt(pct.dataset.pct);
-        const step = target / 60;
         const interval = setInterval(() => {
-          count = Math.min(count + step, target);
+          count = Math.min(count + target / 60, target);
           pct.textContent = Math.round(count) + '%';
           if (count >= target) clearInterval(interval);
         }, 20);
@@ -248,17 +235,14 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ─────────────────────────────────────
      10. STATS COUNTER
   ───────────────────────────────────── */
-  const statNums = document.querySelectorAll('.stat-num');
   let statsAnimated = false;
 
   function animateStats() {
     if (statsAnimated) return;
-    const section = document.getElementById('about');
-    if (!section) return;
-    const rect = section.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.85) {
+    const sec = document.getElementById('about');
+    if (sec && sec.getBoundingClientRect().top < window.innerHeight * 0.85) {
       statsAnimated = true;
-      statNums.forEach(el => {
+      document.querySelectorAll('.stat-num').forEach(el => {
         const target = parseInt(el.dataset.count);
         let count = 0;
         const step = Math.max(target / 60, 1);
@@ -276,70 +260,98 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ─────────────────────────────────────
      11. RESUME MODAL
   ───────────────────────────────────── */
-  const modal      = document.getElementById('resumeModal');
-  const viewBtn    = document.getElementById('viewResumeBtn');
+  const modal     = document.getElementById('resumeModal');
+  const viewBtn   = document.getElementById('viewResumeBtn');
   const closeModal = document.getElementById('modalClose');
 
-  viewBtn && viewBtn.addEventListener('click', () => {
+  viewBtn?.addEventListener('click', () => {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   });
-  closeModal && closeModal.addEventListener('click', () => {
+  closeModal?.addEventListener('click', () => {
     modal.classList.remove('open');
     document.body.style.overflow = '';
   });
-  modal && modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
-    }
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) { modal.classList.remove('open'); document.body.style.overflow = ''; }
   });
 
   /* ─────────────────────────────────────
-     12. CONTACT FORM
+     12. CONTACT FORM — Web3Forms API
   ───────────────────────────────────── */
-  const sendBtn = document.getElementById('sendBtn');
-  const toast   = document.getElementById('toast');
+  const sendBtn  = document.getElementById('sendBtn');
+  const toast    = document.getElementById('toast');
+  const toastMsg = document.getElementById('toast-msg');
 
-  sendBtn && sendBtn.addEventListener('click', () => {
+  function showToast(msg, success = true) {
+    toastMsg.textContent = msg;
+    toast.querySelector('i').className = success ? 'ri-checkbox-circle-line' : 'ri-error-warning-line';
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+  }
+
+  sendBtn?.addEventListener('click', async () => {
     const name    = document.getElementById('fname').value.trim();
     const email   = document.getElementById('femail').value.trim();
+    const subject = document.getElementById('fsubject').value.trim();
     const message = document.getElementById('fmessage').value.trim();
 
-    if (!name || !email || !message) {
-      // Shake animation on empty fields
-      [document.getElementById('fname'), document.getElementById('femail'), document.getElementById('fmessage')]
-        .forEach(field => {
-          if (!field.value.trim()) {
-            field.style.borderColor = '#e07070';
-            field.style.animation = 'shake 0.35s ease';
-            setTimeout(() => {
-              field.style.borderColor = '';
-              field.style.animation = '';
-            }, 500);
-          }
-        });
-      return;
-    }
+    // Validation
+    const fields = [
+      { el: document.getElementById('fname'), val: name },
+      { el: document.getElementById('femail'), val: email },
+      { el: document.getElementById('fmessage'), val: message },
+    ];
+    let hasError = false;
+    fields.forEach(({ el, val }) => {
+      if (!val) {
+        el.style.borderColor = '#e07070';
+        el.style.animation = 'shake 0.35s ease';
+        setTimeout(() => { el.style.borderColor = ''; el.style.animation = ''; }, 600);
+        hasError = true;
+      }
+    });
+    if (hasError) return;
 
-    // Simulate send
+    // Loading state
     sendBtn.innerHTML = '<i class="ri-loader-4-line" style="animation:spin 0.7s linear infinite"></i> Sending…';
-    setTimeout(() => {
+    sendBtn.disabled = true;
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: '16e40b32-ff84-4fdb-b9a7-bbdae5960467',
+          name,
+          email,
+          subject: subject || 'Portfolio Contact Form',
+          message,
+          from_name: 'Munazza Portfolio',
+        }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        showToast('Message sent! I\'ll get back to you soon 🎉', true);
+        ['fname','femail','fsubject','fmessage'].forEach(id => {
+          document.getElementById(id).value = '';
+        });
+      } else {
+        showToast('Oops! Something went wrong. Please try again.', false);
+      }
+    } catch {
+      showToast('Network error. Please try again.', false);
+    } finally {
       sendBtn.innerHTML = '<i class="ri-send-plane-line"></i> Send Message';
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3200);
-      document.getElementById('fname').value = '';
-      document.getElementById('femail').value = '';
-      document.getElementById('fsubject').value = '';
-      document.getElementById('fmessage').value = '';
-    }, 1500);
+      sendBtn.disabled = false;
+    }
   });
 
   /* ─────────────────────────────────────
      13. BACK TO TOP
   ───────────────────────────────────── */
-  const backTop = document.getElementById('back-to-top');
-  backTop && backTop.addEventListener('click', () => {
+  document.getElementById('back-to-top')?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
@@ -349,27 +361,24 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.magnetic').forEach(el => {
     el.addEventListener('mousemove', (e) => {
       const rect = el.getBoundingClientRect();
-      const dx = e.clientX - (rect.left + rect.width  / 2);
-      const dy = e.clientY - (rect.top  + rect.height / 2);
+      const dx = e.clientX - (rect.left + rect.width / 2);
+      const dy = e.clientY - (rect.top + rect.height / 2);
       el.style.transform = `translate(${dx * 0.25}px, ${dy * 0.25}px)`;
     });
-    el.addEventListener('mouseleave', () => {
-      el.style.transform = '';
-    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
   });
 
   /* ─────────────────────────────────────
-     15. MOUSE PARALLAX ON HERO
+     15. PARALLAX BLOBS ON HERO
   ───────────────────────────────────── */
-  const blobs = document.querySelectorAll('#hero .blob');
-  document.getElementById('hero').addEventListener('mousemove', (e) => {
-    const cx = window.innerWidth  / 2;
-    const cy = window.innerHeight / 2;
-    const dx = (e.clientX - cx) / cx;
-    const dy = (e.clientY - cy) / cy;
+  const heroEl = document.getElementById('hero');
+  const blobs  = document.querySelectorAll('#hero .blob');
+  heroEl?.addEventListener('mousemove', (e) => {
+    const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    const dx = (e.clientX - cx) / cx, dy = (e.clientY - cy) / cy;
     blobs.forEach((b, i) => {
-      const factor = (i + 1) * 12;
-      b.style.transform = `translate(${dx * factor}px, ${dy * factor}px)`;
+      const f = (i + 1) * 12;
+      b.style.transform = `translate(${dx * f}px, ${dy * f}px)`;
     });
   });
 
@@ -379,8 +388,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width  - 0.5;
-      const y = (e.clientY - rect.top)  / rect.height - 0.5;
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
       card.style.transform = `translateY(-8px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`;
       card.style.transition = 'transform 0.1s ease';
     });
@@ -391,37 +400,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ─────────────────────────────────────
-     17. SMOOTH SCROLL FOR NAV LINKS
+     17. SMOOTH SCROLL
   ───────────────────────────────────── */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
       const target = document.querySelector(link.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        const offset = target.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({ top: offset, behavior: 'smooth' });
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
       }
     });
   });
 
   /* ─────────────────────────────────────
-     18. INJECT EXTRA KEYFRAMES
-  ───────────────────────────────────── */
-  const extraStyles = document.createElement('style');
-  extraStyles.textContent = `
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-6px); }
-      75% { transform: translateX(6px); }
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  `;
-  document.head.appendChild(extraStyles);
-
-  /* ─────────────────────────────────────
-     19. INTERSECTION OBSERVER: TIMELINE
+     18. TIMELINE OBSERVER
   ───────────────────────────────────── */
   const tlItems = document.querySelectorAll('.timeline-item');
   const tlObserver = new IntersectionObserver((entries) => {
@@ -441,15 +433,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ─────────────────────────────────────
-     20. HOVER GLOW ON CONTACT CARDS
+     19. EXTRA KEYFRAMES
   ───────────────────────────────────── */
-  document.querySelectorAll('.contact-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      card.style.boxShadow = '0 8px 32px rgba(201,152,127,0.2)';
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.boxShadow = '';
-    });
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes shake { 0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)} }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  `;
+  document.head.appendChild(style);
+
+  /* ─────────────────────────────────────
+     20. HERO-IMAGE WRAP: mouse parallax 3D
+  ───────────────────────────────────── */
+  const heroImgWrap = document.querySelector('.hero-image-wrap');
+  heroEl?.addEventListener('mousemove', (e) => {
+    if (!heroImgWrap) return;
+    const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    const dx = (e.clientX - cx) / cx * 6;
+    const dy = (e.clientY - cy) / cy * 4;
+    heroImgWrap.style.transform = `perspective(800px) rotateY(${dx}deg) rotateX(${-dy}deg)`;
+  });
+  heroEl?.addEventListener('mouseleave', () => {
+    if (heroImgWrap) heroImgWrap.style.transform = '';
   });
 
-}); // END DOMContentLoaded
+});
